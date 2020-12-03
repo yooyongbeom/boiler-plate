@@ -28,10 +28,15 @@ mongoose.connect(config.mongoURI, {
   .catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-  res.send('시작의yyb')
+  res.send('Hello World!~~ ')
 });
 
-app.post('/register', (req, res) => {
+app.get('/api/hello', (req, res) => {
+
+  res.send("하이 ~ ");
+});
+
+app.post('/api/users/register', (req, res) => {
   // 회원가입할때 정보를 client에서 보내면 DB에 저장
   const user = new User(req.body);
   // console.log(req.body);
@@ -43,7 +48,7 @@ app.post('/register', (req, res) => {
   });
 });
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   // 1. 요청된 이메일을 DB에서 찾는다.
   // 2. 있으면 비번이 맞는지 체크한다.
   // 3. 토큰을 생성한다.
